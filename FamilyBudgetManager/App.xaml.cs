@@ -91,7 +91,7 @@ namespace FamilyBudgetManager
             SimpleIoc.Default.Register<CategoriesViewModel>();
             SimpleIoc.Default.Register<IFamilyBudgetService, FamilyBudgetService>();
 
-            NavigationService.Navigate(typeof(MasterDetailPage));
+            NavigationService.Navigate(typeof(AddEditMoneyActionPage));
         }
 
         public async override Task OnSuspendingAsync(object s, SuspendingEventArgs e, bool prelaunchActivated)

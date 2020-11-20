@@ -40,7 +40,7 @@
                 </ComboBox>
                 <ComboBox x:Name="CategoriesComboBox" Width="200" Header="Categories" RelativePanel.Below="CategoriesHeader" RelativePanel.RightOf="TypesComboBox" Margin="5" FontSize="20" ItemsSource="{x:Bind ViewModel.Categories,Mode=TwoWay}" SelectedItem="{x:Bind ViewModel.SelectedCategory,Mode=TwoWay}"/>
                 <TextBlock x:Name="SumHeader" Text="Sum" RelativePanel.Below="CategoriesComboBox" Margin="5" FontSize="25"/>
-                <TextBox x:Name="SumTextBox" Text="{x:Bind ViewModel.Sum,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="20" RelativePanel.Below="SumHeader" Margin="5"/>
+                <TextBox x:Name="SumTextBox" Text="{x:Bind ViewModel.Sum,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="20" RelativePanel.Below="SumHeader" Margin="5" TextChanged="SumTextBox_TextChanged"/>
                 <TextBlock x:Name="DateHeader" Text="Date" RelativePanel.Below="SumTextBox" FontSize="25"/>
                 <DatePicker x:Name="DateTextBox" Date="{x:Bind ViewModel.Date,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" RelativePanel.Below="DateHeader"/>
                 <TextBlock x:Name="NoteHeader" Text="Note" FontSize="25" RelativePanel.Below="DateTextBox" Margin="5"/>

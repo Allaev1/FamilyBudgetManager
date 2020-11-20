@@ -54,6 +54,12 @@ namespace FamilyBudgetManager.ViewModels
                 Header = "Edit money action";
                 BackButtonContent = "Back";
                 moneyActionToEdit = (MoneyActions)parameter;
+
+                if (familyBudgetService.DataBaseConnection.Table<Categories>().Any(category => category.CategoryName == moneyActionToEdit.Category))
+                    SelectedType = "Expenditure";
+                else
+                    SelectedType = "Income";
+
                 SelectedCategory = moneyActionToEdit.Category;
                 Sum = moneyActionToEdit.Sum.ToString();
                 Note = moneyActionToEdit.Note;
@@ -203,11 +209,13 @@ namespace FamilyBudgetManager.ViewModels
             SelectedType = null;
             Sum = string.Empty;
             Note = string.Empty;
+
+            SaveCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanSaveCommand()
         {
-            if (TempMoneyAction.Category != null & TempMoneyAction.Sum.All(char.IsDigit)) return true;
+            if (SelectedCategory != null & Sum.All(char.IsDigit)) return true;
             else return false;
         }
         #endregion
@@ -225,6 +233,8 @@ namespace FamilyBudgetManager.ViewModels
                 SelectedType = null;
                 Sum = string.Empty;
                 Note = string.Empty;
+
+                SaveCommand.RaiseCanExecuteChanged();
             }
         }
         #endregion

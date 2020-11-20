@@ -34,48 +34,49 @@ namespace FamilyBudgetManager.ViewModels
         #endregion
 
         #region Naviagtion event
-        public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        public async override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             var moneyaactions = new List<MoneyActions>(familyBudgetService.DataBaseConnection.Table<MoneyActions>());
 
-            _moneyActions = moneyaactions.Select(a =>
+            await Task.Run(() =>
             {
-                var sum = a.Sum.ToString("N1", CultureInfo.InvariantCulture);
-                var date = a.Date;
-                string type = null;
-                if (a.Type == 0)
-                    type = "Income";
-                else
-                    type = "Expenditure";
-
-                return new MoneyActionView()
+                _moneyActions = moneyaactions.Select(a =>
                 {
-                    ID = (int)a.ID,
-                    Type = type,
-                    Category = a.Category,
-                    Date = date,
-                    Sum = sum,
-                    Note = a.Note
-                };
+                    var sum = a.Sum.ToString("N1", CultureInfo.InvariantCulture);
+                    var date = a.Date;
+                    string type = null;
+                    if (a.Type == 0)
+                        type = "Income";
+                    else
+                        type = "Expenditure";
 
-            }).ToObservableCollection();
+                    return new MoneyActionView()
+                    {
+                        ID = (int)a.ID,
+                        Type = type,
+                        Category = a.Category,
+                        Date = date,
+                        Sum = sum,
+                        Note = a.Note
+                    };
 
-            return Task.CompletedTask;
+                }).ToObservableCollection();
+            });
         }
         #endregion
 
         #region Bindable properties
         public ObservableCollection<MoneyActionView> MoneyActions { get { return _moneyActions; } }
 
-        public MoneyActionView SelectedMoneyAction 
-        { 
-            set 
-            { 
+        public MoneyActionView SelectedMoneyAction
+        {
+            set
+            {
                 Set(ref _selectedMoneyAction, value);
                 EditMoneyActionCommand.RaiseCanExecuteChanged();
                 DeleteMoneyActionCommand.RaiseCanExecuteChanged();
-            } 
-            get { return _selectedMoneyAction; } 
+            }
+            get { return _selectedMoneyAction; }
         }
         #endregion
 

@@ -7,6 +7,8 @@
     xmlns:controls="using:Template10.Controls"
     xmlns:uwpKit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:syncfusion="using:Syncfusion.UI.Xaml.Grid" 
+    xmlns:syncfusionDataPager="using:Syncfusion.UI.Xaml.Controls.DataPager"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -23,8 +25,22 @@
             </controls:PageHeader.PrimaryCommands>
         </controls:PageHeader>
 
-        <Border BorderThickness="0.5" CornerRadius="5" Margin="10" BorderBrush="Black" Grid.Row="1">
-            <uwpKit:DataGrid ItemsSource="{x:Bind ViewModel.Categories}" SelectedItem="{x:Bind ViewModel.SelectedCategory,Mode=TwoWay}" IsReadOnly="True" Margin="2"/>
-        </Border>
+        <Grid Margin="10" BorderBrush="Black" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <syncfusion:SfDataGrid ItemsSource="{Binding ElementName=dataPager,Path=PagedSource}"
+                                   SelectedItem="{x:Bind ViewModel.SelectedCategory,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                   VerticalContentAlignment="Center"
+                                   HorizontalContentAlignment="Center"
+                                   ColumnSizer="AutoLastColumnFill"/>
+            <syncfusionDataPager:SfDataPager x:Name="dataPager"
+                                    Grid.Row="1"
+                                    Source="{x:Bind ViewModel.Categories}"
+                                    PageSize="20"
+                                    HorizontalAlignment="Center"/>
+        </Grid>
     </Grid>
 </Page>

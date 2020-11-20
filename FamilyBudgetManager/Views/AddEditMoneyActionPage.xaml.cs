@@ -33,5 +33,21 @@ namespace FamilyBudgetManager.Views
         {
             get { return _viewModel ?? (_viewModel = (AddEditMoneyActionViewModel)DataContext); }
         }
+
+        private void SumTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string sumText = SumTextBox.Text; //Text that is currently in text box
+
+            foreach (char c in sumText)
+            {
+                if (c < '0' || c > '9')
+                {
+                    SumTextBox.BorderBrush= new SolidColorBrush(Windows.UI.Colors.Red);
+                    return;
+                }
+            }
+
+            SumTextBox.BorderBrush = new SolidColorBrush(Windows.UI.Colors.Gray);
+        }
     }
 }

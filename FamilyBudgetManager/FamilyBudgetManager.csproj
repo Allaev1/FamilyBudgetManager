@@ -235,10 +235,16 @@
     <PackageReference Include="MvvmLight">
       <Version>5.4.1.1</Version>
     </PackageReference>
+    <PackageReference Include="ReactiveUI.Validation">
+      <Version>1.8.6</Version>
+    </PackageReference>
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.7.335</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.SfChart.UWP">
+      <Version>18.2.0.59</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.SfGrid.UWP">
       <Version>18.2.0.59</Version>
     </PackageReference>
     <PackageReference Include="Template10">

@@ -32,11 +32,12 @@ namespace FamilyBudgetManager.ViewModels
             {
                 return new ObservableCollection<NavigationMenuItem>()
                 {
-                    new NavigationMenuItem(){Content="Report",Symbol=Symbol.Home,PageType=typeof(MasterDetailPage)},
-                    new NavigationMenuItem(){Content="Work panel",Symbol=Symbol.Edit,PageType=typeof(AddEditMoneyActionPage)},
-                    new NavigationMenuItem(){Content="Statistic",Symbol=Symbol.Pictures,PageType=typeof(StatisticPage)},
+                    new NavigationMenuItem(){Content="Home",Symbol=Symbol.Home,PageType=typeof(AddEditMoneyActionPage)},
+                    new NavigationMenuItem(){Content="Report generator",Symbol=Symbol.Edit},
                     new NavigationMenuItem(){Content="Journal",Symbol=Symbol.ViewAll,PageType=typeof(JournalPage)},
                     new NavigationMenuItem(){Content="Categories",Symbol=Symbol.List,PageType=typeof(CategoriesPage)}
+                    //new NavigationMenuItem(){Content="Statistic",Symbol=Symbol.Pictures,PageType=typeof(StatisticPage)},
+                    //new NavigationMenuItem(){Content="Report",Symbol=Symbol.Home,PageType=typeof(MasterDetailPage)},
                 };
             }
         }
